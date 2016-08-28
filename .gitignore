@@ -1,0 +1,11 @@
+.vagrant
+.project
+.settings
+*.log
+*.bak
+playbook.retry
+coverage
+node_modules
+debugform/app/bundle.js
+debugform/out
+!.gitkeep
