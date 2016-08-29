@@ -14,10 +14,10 @@
   <div class="panel-heading">{{ "DEBUGFORM_TITLE" | translate }}</div>
   <div class="panel-body">
     <div>{{ "DEBUGFORM_BODY" | translate }}</div>
-    <div ng-repeat="category in vm.config.categories">
+    <div ng-repeat="category in vm.config.categories" class="template-dropdown">
       <div class="btn-group" uib-dropdown>
         <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle>
-          {{ category.name }} <span class="caret"></span>
+          {{ category.name }}<span ng-if="$index == vm.categoryNo"> : {{ category.templates[vm.templateNo].name }}</span> <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
           <li ng-repeat="template in category.templates" role="menuitem"><a ng-click="vm.select($parent.$index, $index)">{{ template.name }}</a></li>
@@ -36,10 +36,18 @@
       <fieldset class="form-group">
         <label>
           {{ "METHOD" | translate }}:
-          <input type="text" ng-model="vm.form.method" name="form.method" class="form-control" required="true" ng-maxlength="99">
+          <select name="form.method" ng-model="vm.form.method" class="form-control">
+            <option value="GET">GET</option>
+            <option value="HEAD">HEAD</option>
+            <option value="POST">POST</option>
+            <option value="PUT">PUT</option>
+            <option value="DELETE">DELETE</option>
+            <option value="TRACE">TRACE</option>
+            <option value="OPTIONS">OPTIONS</option>
+            <option value="CONNECT">CONNECT</option>
+            <option value="PATCH">PATCH</option>
+          </select>
         </label>
-        <div class="warning" ng-show="debugform['form.method'].$error.required">{{ "DEBUGFORM_METHOD_REQUIRED" | translate }}</div>
-        <div class="warning" ng-show="debugform['form.method'].$error.maxlength">{{ "DEBUGFORM_METHOD_MAXLENGTH" | translate }}</div>
       </fieldset>
       <fieldset class="form-group">
         <label>
@@ -50,7 +58,7 @@
       </fieldset>
       <fieldset class="form-group">
         <label>
-          {{ "BODY" | translate }}
+          {{ "BODY" | translate }}:
           <textarea ng-model="vm.form.body" name="form.body" class="form-control" rows="3" validate-json="{{ vm.form.json }}"></textarea>
         </label>
         <div class="warning" ng-show="debugform['form.body'].$error.validateJson">{{ "INVALID_JSON" | translate }}</div>
@@ -65,9 +73,16 @@
 <div class="panel panel-default">
   <div class="panel-heading">{{ "RESULT" | translate }}</div>
   <div class="panel-body">
-    <div>{{ "STATUS" | translate }}: {{ vm.response.status }} {{ vm.response.statusText  }}</div>
-    <div>{{ "HEADERS" | translate }}: {{ vm.response.headers }}</div>
-    <div>{{ "DATA" | translate }}: {{ vm.response.data }}</div>
+    <fieldset class="form-group">
+      <span class="result-label">{{ "STATUS" | translate }}:</span>
+      {{ vm.response.status }} {{ vm.response.statusText  }}
+    </fieldset>
+    <fieldset class="form-group">
+      <label>
+        {{ "BODY" | translate }}:
+        <textarea ng-model="vm.response.data" name="response.data" class="form-control" rows="3" readonly></textarea>
+      </label>
+    </fieldset>
   </div>
 </div>
   

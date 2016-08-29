@@ -93,6 +93,25 @@ form .ng-valid {
 	border: 5px dashed blue;
 }
 
+.template-dropdown {
+	margin-top: 0.3em;
+	margin-bottom: 1em;
+	margin-right: 0.5em;
+	float: left;
+}
+
+form[name="debugform"] {
+	clear : both;
+}
+
+textarea[name="form.headers"] {
+	min-height: 6em;
+}
+
 textarea[name="form.body"] {
-	min-height: 20em;
+	min-height: 25em;
+}
+
+.result-label {
+	font-weight: bold;
 }

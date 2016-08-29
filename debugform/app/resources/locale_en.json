@@ -9,7 +9,6 @@
 	"HEADERS": "Headers",
 	"BODY": "Body",
 	"STATUS": "Status",
-	"DATA": "Data",
 	"FATAL_ERROR": "Fatal Error. Please refresh the page and retry.",
 	"INVALID_JSON": "Invalid JSON.",
 	"CONFIG_UPLOAD_TITLE": "Upload a configuration file",
