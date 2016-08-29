@@ -39,7 +39,7 @@ class HttpError extends Error {
 	/**
 	 * HTTPレスポンスから例外を投げる。
 	 * @param {Object} response HTTPレスポンス。
-	 * @throw {HttpError} 生成した例外。
+	 * @throws {HttpError} 生成した例外。
 	 */
 	static throwError(response) {
 		throw new HttpError(response);
@@ -50,7 +50,7 @@ class HttpError extends Error {
 	 * @param {Object} response HTTPレスポンス。
 	 * @param {...number} statuses dataを返すステータスコード。
 	 * @return {Promise.<string>} response.dataの値。
-	 * @throw {HttpError} 生成した例外。
+	 * @throws {HttpError} 生成した例外。
 	 */
 	static rejectDataOrThrowError(response, ...statuses) {
 		if (response && statuses.some((v) => response.status == v)) {

@@ -17,7 +17,7 @@ export default /* @ngInject */ function($http) {
 	/**
 	 * フォーム定義情報の読み込み。
 	 * @function load
-	 * @params {string} url 読み込む設定ファイルURL。
+	 * @param {string} url 読み込む設定ファイルURL。
 	 * @returns {Promise.<Object>} 読み込み結果。
 	 */
 	function load(url) {
@@ -61,7 +61,7 @@ export default /* @ngInject */ function($http) {
 	/**
 	 * デバッグフォームの送信。
 	 * @function submit
-	 * @params {Object} form 送信するフォーム情報。
+	 * @param {Object} form 送信するフォーム情報。
 	 * @returns {Promise.<Object>} 送信結果。
 	 */
 	function submit(form) {
