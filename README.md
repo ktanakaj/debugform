@@ -1,9 +1,7 @@
 # debugform
 APIを叩くためのデバッグ用Webアプリです。  
-JavaScriptのWebアプリから、テンプレートを用いて、入力したJSONでAPIを叩くことができます。  
+JavaScriptのWebアプリから、テンプレートを用いて、入力したテキストでAPIを叩くことができます。  
 テンプレートには `{{ Math.floor(Math.random() * 1000) }}` のようにワンライナーのコード等を埋め込むことができます。
-
-※ 勉強半分で作られたアプリです。
 
 ## 環境
 * AngularJS 1.5.7
@@ -34,6 +32,8 @@ JavaScriptオンリーで作っているので、`app`以下のファイルを�
 * `npm run build` - アプリのビルド
 * `npm run watch` - アプリのビルド（デバッグ用）
 * `npm run doc` - アプリのAPIドキュメント生成
+* `npm test` - アプリのユニットテスト実行
+* `npm run eslint` - アプリの静的解析ツール実行
 * `npm run clean` - 全ビルド生成物の削除
 
 ## 起動方法
