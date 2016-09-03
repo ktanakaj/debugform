@@ -1,7 +1,7 @@
 "use strict";
 /**
  * JSONバリデーションAngular.jsディレクティブ。
- * @module ./websrc/directives/validate-json
+ * @module ./scripts/directives/validate-json
  */
 export default /* @ngInject */ function() {
 	return {
