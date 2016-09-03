@@ -66,13 +66,17 @@ export default /* @ngInject */ function($http) {
 	 */
 	function submit(form) {
 		// 正常系も異常系もレスポンスオブジェクトを返す
-		console.log(form);
-		return $http({
+		let config = {
 			method: form.method,
 			url: form.url,
 			headers: form.headers,
 			data: form.body
-		})
+		};
+		if (!form.json) {
+			config.transformRequest = (data) => data;
+		}
+		console.log(config);
+		return $http(config)
 		.catch((response) => response);
 	}
 }

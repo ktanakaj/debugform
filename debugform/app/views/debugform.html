@@ -42,9 +42,9 @@
             <option value="POST">POST</option>
             <option value="PUT">PUT</option>
             <option value="DELETE">DELETE</option>
-            <option value="TRACE">TRACE</option>
+            <!-- <option value="TRACE">TRACE</option> -->
             <option value="OPTIONS">OPTIONS</option>
-            <option value="CONNECT">CONNECT</option>
+            <!-- <option value="CONNECT">CONNECT</option> -->
             <option value="PATCH">PATCH</option>
           </select>
         </label>
@@ -55,11 +55,12 @@
           <textarea ng-model="vm.form.headers" name="form.headers" class="form-control" rows="2" validate-json="true"></textarea>
         </label>
         <div class="warning" ng-show="debugform['form.headers'].$error.validateJson">{{ "INVALID_JSON" | translate }}</div>
+        <div><small>※ ヘッダーは現状設定しても有効になりません</small></div>
       </fieldset>
       <fieldset class="form-group">
         <label>
           {{ "BODY" | translate }}:
-          <textarea ng-model="vm.form.body" name="form.body" class="form-control" rows="3" validate-json="{{ vm.form.json }}"></textarea>
+          <textarea ng-model="vm.form.body" name="form.body" class="form-control" rows="3" validate-json="{{ vm.form.json }}" ng-disabled="vm.form.method == 'GET' || vm.form.method == 'HEAD'"></textarea>
         </label>
         <div class="warning" ng-show="debugform['form.body'].$error.validateJson">{{ "INVALID_JSON" | translate }}</div>
       </fieldset>

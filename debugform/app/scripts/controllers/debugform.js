@@ -61,7 +61,9 @@ export default /* @ngInject */ function($scope, $localStorage, Upload, debugform
 		// JSONのheadersとbodyを文字列として展開する
 		// TODO: JSONをそのままの形で表示できるようにしたい
 		this.form.headers = JSON.stringify(this.form.headers, null, "\t");
-		this.form.body = JSON.stringify(this.form.body, null, "\t");
+		if (this.form.json) {
+			this.form.body = JSON.stringify(this.form.body, null, "\t");
+		}
 		this.response = {};
 	};
 
