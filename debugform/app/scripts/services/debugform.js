@@ -42,20 +42,98 @@ export default /* @ngInject */ function($http) {
 		let templates = category.templates || [];
 
 		// テンプレート自体が変更されないようクローンする
-		let form = JSON.parse(JSON.stringify(templates[templateNo])) || {};
+		let form = JSON.parse(JSON.stringify(templates[templateNo] || {}));
 
 		// カテゴリからパラメータを引き継ぐ
-		// TODO: 入れ子も対応する
-		for (let key of Object.keys(category)) {
-			if (key != "templates" && form[key] === undefined) {
-				form[key] = category[key];
-			}
-		}
+		deepcopy(form, category, "templates");
 
-		// TODO: 埋め込み変数を解決
-		// TODO: 入れ子も対応する
+		// 埋め込み式を展開
+		parseExpressions(form);
 
 		return form;
+	}
+
+	/**
+	 * オブジェクトのプロパティをディープコピーする。
+	 * コピー先に値が存在しない場合のみコピーする。
+	 * @function deepcopy
+	 * @param {Object} target コピーされるオブジェクト。
+	 * @param {Object} source コピー元のオブジェクト。
+	 * @param {...Any} excludes 指定されたプロパティを除外する。
+	 */
+	function deepcopy(target, source, ...excludes) {
+		// 除外されたプロパティ以外を全てコピーする
+		for (let key of Object.keys(source)) {
+			if (!excludes.includes(key)) {
+				let value = source[key];
+				if (value instanceof Object && !Array.isArray(value)) {
+					// プロパティがオブジェクトの場合、再帰的にコピーする
+					// ※ 厳密なオブジェクトチェックはしていない
+					let newValue = target[key] || {};
+					deepcopy(newValue, value);
+					target[key] = newValue;
+				} else if (target[key] === undefined) {
+					// コピー先がない場合のみコピーする
+					target[key] = value;
+				}
+			}
+		}
+	}
+
+	/**
+	 * プロパティ中の埋め込み式を展開する。
+	 * @function parseExpressions
+	 * @param {Object} target 展開するオブジェクト。
+	 * @param {Object} source 埋め込み変数の値を格納したオブジェクト。未指定時はtarget自身。
+	 */
+	function parseExpressions(target, source) {
+		// 全プロパティをチェックして、埋め込み文字があったら展開する
+		source = source || target;
+		for (let key of Object.keys(target)) {
+			let value = target[key];
+			if (value instanceof Object && !Array.isArray(value)) {
+				// プロパティがオブジェクトの場合、再帰的に実行する
+				// ※ 厳密なオブジェクトチェックはしていない
+				parseExpressions(value, source);
+			} else if (typeof value == "string") {
+				// 文字列の場合、埋め込み式を展開
+				target[key] = parseExpressionStr(value, source);
+			}
+		}
+	}
+
+	/**
+	 * 文字列中の埋め込み式を展開する。
+	 * @function parseExpressionStr
+	 * @param {Object} str 展開する文字列。
+	 * @param {Object} source 埋め込み変数の値を格納したオブジェクト。
+	 * @returns {string} 展開した文字列。
+	 */
+	function parseExpressionStr(str, source) {
+		let regex = /\{\{(.*?)\}\}/g;
+		let m;
+		while ((m = regex.exec(str)) !== null) {
+			let parsed = parseExpression(m[1], source) || "";
+			str = m["input"].slice(0, m["index"]) + parsed + m["input"].slice(m["index"] + m[0].length);
+			regex.lastIndex = m["index"] + String(parsed).length;
+		}
+		return str;
+	}
+
+	/**
+	 * 埋め込み式を展開する。
+	 * @function parseExpression
+	 * @param {string} expression 展開する式。
+	 * @param {Object} source 埋め込み変数の値を格納したオブジェクト。
+	 * @returns {string} 展開した文字列。
+	 */
+	function parseExpression(expression, source) {
+		// 普通の変数ならオブジェクトのプロパティ、それ以外ならJavaScript文として展開
+		expression = expression.trim();
+		if (/^[$_a-zA-Z][$_a-zA-Z0-9]*$/.test(expression)) {
+			return source[expression];
+		}
+		return (function(){ return eval(expression); })();
 	}
 
 	/**

@@ -1,21 +1,23 @@
 {
   "name": "debugform",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "build": "npm run clean-app && browserify ./app/scripts/app.js -t [ babelify --presets [ es2015 ] ] -t browserify-ngannotate -o ./app/bundle.js",
     "watch": "npm run clean-app && watchify ./app/scripts/app.js -t [ babelify --presets [ es2015 ] ] -t browserify-ngannotate -v -d -o ./app/bundle.js",
-    "test": "mocha --recursive",
+    "test": "npm run clean-tmp && mkdir ./tmp && cp -r ./test ./tmp/test && (find ./test -name \"*.js\" | awk '{print \"browserify \" $1 \" -t [ babelify --presets [ es2015 ] ] -d -o ./tmp/\" $1}' | sh) && mocha --recursive ./tmp/test",
     "doc": "npm run clean-doc && jsdoc -r ./package.json ./app/scripts ./test",
-    "clean": "npm run clean-app & npm run clean-doc",
+    "clean": "npm run clean-app & npm run clean-doc & npm run clean-tmp",
     "clean-app": "rm -f ./app/bundle.js",
     "clean-doc": "rm -rf ./out",
+    "clean-tmp": "rm -rf ./tmp",
     "eslint": "eslint ./app/scripts ./test"
   },
   "dependencies": {},
   "devDependencies": {
     "babel-preset-es2015": "^6.13.2",
     "babelify": "^7.3.0",
+    "browserify": "^13.1.0",
     "browserify-ngannotate": "^2.0.0",
     "chai": "^3.5.0",
     "eslint": "^3.4.0",

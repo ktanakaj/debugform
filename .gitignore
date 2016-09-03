@@ -7,5 +7,6 @@ playbook.retry
 coverage
 node_modules
 debugform/app/bundle.js
+debugform/tmp
 debugform/out
 !.gitkeep
