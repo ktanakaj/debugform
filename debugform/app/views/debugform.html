@@ -52,10 +52,9 @@
       <fieldset class="form-group">
         <label>
           {{ "HEADERS" | translate }}:
-          <textarea ng-model="vm.form.headers" name="form.headers" class="form-control" rows="2" validate-json="true"></textarea>
+          <textarea ng-model="vm.form.headerText" name="form.headerText" class="form-control" rows="2" validate-json="true"></textarea>
         </label>
-        <div class="warning" ng-show="debugform['form.headers'].$error.validateJson">{{ "INVALID_JSON" | translate }}</div>
-        <div><small>※ ヘッダーは現状設定しても有効になりません</small></div>
+        <div class="warning" ng-show="debugform['form.headerText'].$error.validateJson">{{ "INVALID_JSON" | translate }}</div>
       </fieldset>
       <fieldset class="form-group">
         <label>

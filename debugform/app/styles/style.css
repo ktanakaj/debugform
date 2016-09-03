@@ -104,7 +104,7 @@ form[name="debugform"] {
 	clear : both;
 }
 
-textarea[name="form.headers"] {
+textarea[name="form.headerText"] {
 	min-height: 6em;
 }
 

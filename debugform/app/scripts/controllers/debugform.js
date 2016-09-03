@@ -58,11 +58,14 @@ export default /* @ngInject */ function($scope, $localStorage, Upload, debugform
 		this.templateNo = templateNo;
 		$localStorage.categoryNo = categoryNo;
 		$localStorage.templateNo = templateNo;
-		// JSONのheadersとbodyを文字列として展開する
-		// TODO: JSONをそのままの形で表示できるようにしたい
-		this.form.headers = JSON.stringify(this.form.headers, null, "\t");
-		if (this.form.json) {
-			this.form.body = JSON.stringify(this.form.body, null, "\t");
+		// headersとdataを文字列として展開する
+		// （もし直接文字列で指定されていたら上書きしない）
+		// TODO: オブジェクトをキーバリューの形で入力できるようにしたい
+		if (this.form.headerText === undefined) {
+			this.form.headerText = JSON.stringify(this.form.headers, null, "\t");
+		}
+		if (this.form.body === undefined && this.form.json) {
+			this.form.body = JSON.stringify(this.form.data, null, "\t");
 		}
 		this.response = {};
 	};
@@ -81,6 +84,9 @@ export default /* @ngInject */ function($scope, $localStorage, Upload, debugform
 	 * @returns {Promise} 処理結果。
 	 */
 	this.submit = () => {
+		// JSON文字列で入力させたヘッダーオブジェクトに上書き
+		this.form.headers = JSON.parse(this.form.headerText || "{}");
+		// フォームを送信しレスポンスを画面表示
 		this.response = {};
 		return debugformService.submit(this.form)
 		.then((response) => {

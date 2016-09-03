@@ -148,11 +148,10 @@ export default /* @ngInject */ function($http) {
 			method: form.method,
 			url: form.url,
 			headers: form.headers,
-			data: form.body
+			data: form.body,
+			// ↓現状は直接生データが渡される想定なので変換しない
+			transformRequest: (data) => data
 		};
-		if (!form.json) {
-			config.transformRequest = (data) => data;
-		}
 		console.log(config);
 		return $http(config)
 		.catch((response) => response);

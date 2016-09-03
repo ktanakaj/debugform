@@ -22,7 +22,7 @@ const config = {
 					"headers": {
 						"Content-Type": "application/json"
 					},
-					"body": {
+					"data": {
 					},
 					"json": true
 				},
@@ -50,7 +50,7 @@ const config = {
 					"headers": {
 						"Content-Type": "application/json"
 					},
-					"body": {
+					"data": {
 						"name": "name={{ name }}",
 						"random": "{{ Math.floor(Math.random() * 1000) }}",
 						"value": "{{ value1 }}",
@@ -99,11 +99,11 @@ describe('debugform', () => {
 	describe('#parseExpressions()', () => {
 		it('should include expression value', () => {
 			let form = service.select(config, 1, 0);
-			assert.equal(form.body.name, "name=inline-sample");
-			assert.equal(form.body.value, "test value");
-			assert.equal(form.body.none, "");
-			assert.equal(form.body.invalid, "");
-			assert.match(form.body.random, /[0-9]{1,4}/);
+			assert.equal(form.data.name, "name=inline-sample");
+			assert.equal(form.data.value, "test value");
+			assert.equal(form.data.none, "");
+			assert.equal(form.data.invalid, "");
+			assert.match(form.data.random, /[0-9]{1,4}/);
 		});
 	});
 });

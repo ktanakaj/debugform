@@ -16,23 +16,13 @@ export default /* @ngInject */ function() {
 		 * @param {Object} ctrl コントローラ。
 		 */
 		link: function(scope, elm, attrs, ctrl) {
-			// 最初に呼ばれたタイミングだとパラメータが渡らない場合があるので、監視する
-			scope.$watch(() => attrs.validateJson, (attr) => {
-				if (attr && attr !== "false" && attr !== "FALSE" && attr !== "0") {
-					ctrl.$validators.validateJson = validate;
-				} else {
-					delete ctrl.$validators.validateJson;
+			ctrl.$validators.validateJson = (modelValue, viewValue) => {
+				// 引数でバリデーションが有効にされていない場合、何もしない
+				let attr = attrs.validateJson;
+				if (!attr || attr === "false" || attr === "FALSE" || attr === "0") {
+					return true;
 				}
-			});
 
-			/**
-			 * バリデーションを実施する。
-			 * @function validate
-			 * @param {string} modelValue モデルの値。
-			 * @param {string} viewValue ビューの値。
-			 * @returns {boolean} バリデーションOKの場合true。
-			 */
-			function validate(modelValue, viewValue) {
 				// JSONとして無効な値が設定されている場合NG
 				if (ctrl.$isEmpty(modelValue)) {
 					return true;
@@ -44,7 +34,12 @@ export default /* @ngInject */ function() {
 					return false;
 				}
 				return true;
-			}
+			};
+
+			// 引数の変化の前にバリデートが動くことがあるようなので、監視する
+			scope.$watch(() => attrs.validateJson, () => {
+				ctrl.$validate();
+			});
 		}
 	};
 }
