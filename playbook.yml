@@ -36,6 +36,8 @@
           yum: name=nodejs state=latest
         - name: Install the latest version of nginx
           yum: name=nginx state=latest
+        - name: Install the latest version of git
+          yum: name=git state=latest
       - block:
         - name: Install "jsdoc" node.js package globally
           npm: name=jsdoc global=yes
