@@ -26,41 +26,33 @@
     </div>
     <form name="debugform" ng-submit="vm.submit()" novalidate>
       <fieldset class="form-group">
-        <label>
-          {{ "DEBUGFORM_URL" | translate }}:
-          <input type="text" ng-model="vm.form.url" name="form.url" class="form-control" required="true" ng-maxlength="4096">
-        </label>
+        <label for="form.url">{{ "DEBUGFORM_URL" | translate }}:</label>
+        <input type="text" ng-model="vm.form.url" id="form.url" name="form.url" class="form-control" required="true" ng-maxlength="4096">
         <div class="warning" ng-show="debugform['form.url'].$error.required">{{ "DEBUGFORM_URL_REQUIRED" | translate }}</div>
         <div class="warning" ng-show="debugform['form.url'].$error.maxlength">{{ "DEBUGFORM_URL_MAXLENGTH" | translate }}</div>
       </fieldset>
       <fieldset class="form-group">
-        <label>
-          {{ "METHOD" | translate }}:
-          <select name="form.method" ng-model="vm.form.method" class="form-control">
-            <option value="GET">GET</option>
-            <option value="HEAD">HEAD</option>
-            <option value="POST">POST</option>
-            <option value="PUT">PUT</option>
-            <option value="DELETE">DELETE</option>
-            <!-- <option value="TRACE">TRACE</option> -->
-            <option value="OPTIONS">OPTIONS</option>
-            <!-- <option value="CONNECT">CONNECT</option> -->
-            <option value="PATCH">PATCH</option>
-          </select>
-        </label>
+        <label for="form.method">{{ "METHOD" | translate }}:</label>
+        <select ng-model="vm.form.method" id="form.method" name="form.method" class="form-control">
+          <option value="GET">GET</option>
+          <option value="HEAD">HEAD</option>
+          <option value="POST">POST</option>
+          <option value="PUT">PUT</option>
+          <option value="DELETE">DELETE</option>
+          <!-- <option value="TRACE">TRACE</option> -->
+          <option value="OPTIONS">OPTIONS</option>
+          <!-- <option value="CONNECT">CONNECT</option> -->
+          <option value="PATCH">PATCH</option>
+        </select>
       </fieldset>
       <fieldset class="form-group">
-        <label>
-          {{ "HEADERS" | translate }}:
-          <textarea ng-model="vm.form.headerText" name="form.headerText" class="form-control" rows="2" validate-json="true"></textarea>
-        </label>
+        <label for="form.headerText">{{ "HEADERS" | translate }}:</label>
+        <textarea ng-model="vm.form.headerText" id="form.headerText" name="form.headerText" class="form-control" rows="2" validate-json="true"></textarea>
         <div class="warning" ng-show="debugform['form.headerText'].$error.validateJson">{{ "INVALID_JSON" | translate }}</div>
       </fieldset>
       <fieldset class="form-group">
-        <label>
-          {{ "BODY" | translate }}:
-          <textarea ng-model="vm.form.body" name="form.body" class="form-control" rows="3" validate-json="{{ vm.form.json }}" ng-disabled="vm.form.method == 'GET' || vm.form.method == 'HEAD'"></textarea>
-        </label>
+        <label for="form.body">{{ "BODY" | translate }}:</label>
+        <textarea ng-model="vm.form.body" id="form.body" name="form.body" class="form-control" rows="3" validate-json="{{ vm.form.json }}" ng-disabled="vm.form.method == 'GET' || vm.form.method == 'HEAD'"></textarea>
         <div class="warning" ng-show="debugform['form.body'].$error.validateJson">{{ "INVALID_JSON" | translate }}</div>
       </fieldset>
       <div>
@@ -78,10 +70,8 @@
       {{ vm.response.status }} {{ vm.response.statusText  }}
     </fieldset>
     <fieldset class="form-group">
-      <label>
-        {{ "BODY" | translate }}:
-        <textarea ng-model="vm.response.data" name="response.data" class="form-control" rows="3" readonly></textarea>
-      </label>
+      <label for="response.data">{{ "BODY" | translate }}:</label>
+      <textarea ng-model="vm.response.data" id="response.data" name="response.data" class="form-control" rows="3" readonly></textarea>
     </fieldset>
   </div>
 </div>
