@@ -45,14 +45,10 @@
           npm: name=eslint global=yes
         - name: Install "mocha" node.js package globally
           npm: name=mocha global=yes
-        - name: Install "chai" node.js package globally
-          npm: name=chai global=yes
         - name: Install "babel" node.js package globally
           npm: name=babel global=yes
         - name: Install "browserify" node.js package globally
           npm: name=browserify global=yes
-        - name: Install "browserify-ngannotate" node.js package globally
-          npm: name=browserify-ngannotate global=yes
         - name: Install "watchify" node.js package globally
           npm: name=watchify global=yes
       - block:

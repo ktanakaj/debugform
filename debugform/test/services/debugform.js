@@ -2,10 +2,10 @@
 /**
  * @file debugform.jsのテスト。
  */
-const assert = require('chai').assert;
+const assert = require('power-assert');
 
-import debugFormService from '../../app/scripts/services/debugform';
-const service = debugFormService(null);
+import debugformService from '../../app/scripts/services/debugform';
+const service = debugformService(null);
 
 const config = {
 	"categories": [
@@ -65,7 +65,7 @@ const config = {
 	]
 };
 
-describe('debugform', () => {
+describe('debugformService', () => {
 	describe('#select()', () => {
 		it('should return selected template', () => {
 			let form = service.select(config, 0, 0);
@@ -81,7 +81,7 @@ describe('debugform', () => {
 			assert.equal(form.name, "general");
 			// カテゴリもない場合は完全に空
 			form = service.select(config, 2, 0);
-			assert.deepEqual(form, {});
+			assert.deepStrictEqual(form, {});
 		});
 	});
 
@@ -89,10 +89,10 @@ describe('debugform', () => {
 		it('should include copied value', () => {
 			let form = service.select(config, 0, 2);
 			assert.equal(form.url, "http://");
-			assert.deepEqual(form.headers, {"Authorization":"Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="});
+			assert.deepStrictEqual(form.headers, {"Authorization":"Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="});
 
 			form = service.select(config, 0, 0);
-			assert.deepEqual(form.headers, {"Content-Type":"application/json", "Authorization":"Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="});
+			assert.deepStrictEqual(form.headers, {"Content-Type":"application/json", "Authorization":"Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="});
 		});
 	});
 
@@ -103,7 +103,7 @@ describe('debugform', () => {
 			assert.equal(form.data.value, "test value");
 			assert.equal(form.data.none, "");
 			assert.equal(form.data.invalid, "");
-			assert.match(form.data.random, /[0-9]{1,4}/);
+			assert(/[0-9]{1,4}/.test(form.data.random));
 		});
 	});
 });
