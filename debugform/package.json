@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "npm run clean-app && browserify ./app/scripts/app.js -t babelify -t browserify-ngannotate -o ./app/bundle.js",
-    "watch": "npm run clean-app && watchify ./app/scripts/app.js -t babelify -t browserify-ngannotate -v -d -o ./app/bundle.js",
+    "watch": "npm run clean-app && watchify --poll=true ./app/scripts/app.js -t babelify -t browserify-ngannotate -v -d -o ./app/bundle.js",
     "test": "NODE_ENV=test mocha --compilers js:babel-register --recursive ./test",
     "doc": "npm run clean-doc && jsdoc -r ./package.json ./app/scripts ./test",
     "clean": "npm run clean-app & npm run clean-doc",
