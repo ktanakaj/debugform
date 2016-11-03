@@ -3,10 +3,10 @@
   vars:
     timezone: "Asia/Tokyo"
     nodesource: https://rpm.nodesource.com/setup_6.x
-    home_dir: /home/vagrant
-    app_nginx_conf_src: "{{ home_dir }}/sync/nginx-app.conf"
+    vagrant_dir: /vagrant
+    app_nginx_conf_src: "{{ vagrant_dir }}/nginx-app.conf"
     app_nginx_conf_dest: /etc/nginx/default.d/debugform.conf
-    app_dir: "{{ home_dir }}/sync/debugform"
+    app_dir: "{{ vagrant_dir }}/debugform"
     build_target: build
   tasks:
     - block:
@@ -63,9 +63,6 @@
       become: true
 
     - block:
-      - block:
-        - name: Chmod vagrant's home directory for nginx
-          file: path={{ home_dir }} mode=0755
       - block:
         - name: Install node.js package for the web application
           npm: path={{ app_dir }} executable="npm --no-bin-links"
