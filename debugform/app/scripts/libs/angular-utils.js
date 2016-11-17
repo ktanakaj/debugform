@@ -20,7 +20,7 @@ function getBrowserLanguage() {
  * @returns {string} 2文字の言語コード。
  */
 function getLanguage() {
-	// 日英のみ対応なので、日本語と不明が日本語、それ以外は英語で返す
+	// 日英のみ対応なので、日本語以外は英語で返す
 	let lang = getBrowserLanguage();
 	if (lang != "" && lang != "ja") {
 		return "en";
