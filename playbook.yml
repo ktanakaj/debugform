@@ -14,21 +14,21 @@
         - name: Check timezone
           shell: timedatectl | grep -e {{ timezone }}
           register: timedatectl_timezone
-          always_run: yes
+          check_mode: no
           changed_when: false
           failed_when: false
         - name: Set timezone
           shell: timedatectl set-timezone {{ timezone }}
           when: timedatectl_timezone.stdout == ""
       - block:
-        - name: Upgrade all packages
-          yum: name=* state=latest
         - name: Check Node.js repository version
           shell: yum info nodejs | grep -e "Version\s*:\s*[6-9].*$"
           register: nodejs_repository_version
-          always_run: yes
+          check_mode: no
           changed_when: false
           failed_when: false
+        - name: Upgrade all packages
+          yum: name=* state=latest
         - name: Register Node.js repository
           shell: curl --silent --location {{ nodesource }} | bash -
           when: nodejs_repository_version.stdout == ""
