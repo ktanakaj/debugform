@@ -5,7 +5,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.5.7/angular-sanitize.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.5.7/angular-locale_ja-jp.js"></script>
@@ -18,7 +17,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="styles/style.css">
   <link rel="stylesheet" type="text/css" href="styles/dashboard.css">
-  <title>{{ "APP_NAME" | translate }}</title>
+  <title>debugform</title>
 </head>
 <body>
   <header class="header">
@@ -31,7 +30,7 @@
     </nav>
   </header>
   <div class="container-fluid">
-    <div ng-view></div>
+    <div ng-include="'views/debugform.html'" ng-controller="debugformController as vm"></div>
   </div>
   <footer class="footer">{{ "COPYRIGHT" | translate }}</footer>
 </body>

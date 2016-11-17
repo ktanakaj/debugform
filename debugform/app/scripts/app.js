@@ -5,17 +5,7 @@
  */
 import angularUtils from './libs/angular-utils.js';
 
-const app = angular.module('debugformApp', ['ngRoute', 'ngStorage', 'ngFileUpload', 'ui.bootstrap', 'pascalprecht.translate']);
-
-// ルーティング
-app.config(/* @ngInject */ function($routeProvider) {
-	$routeProvider
-	.when('/', {
-		templateUrl: 'views/debugform.html',
-		controller: 'debugformController',
-		controllerAs : 'vm',
-	});
-});
+const app = angular.module('debugformApp', ['ngStorage', 'ngFileUpload', 'ui.bootstrap', 'pascalprecht.translate']);
 
 // 国際化の設定
 app.config(/* @ngInject */ function($translateProvider) {
