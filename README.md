@@ -20,7 +20,7 @@ JavaScriptのWebアプリから、テンプレートを用いて、入力した�
     * vagrant-vbguest - Vagrantプラグイン
 * Eclipse 4.7 (for JavaScript and Web Developers) - アプリ開発用IDE
 
-## 動作方法
+## 設置方法
 JavaScriptオンリーで作っているので、`app`以下のファイルを適当な場所に設置すれば動作します。  
 ただし、babelを使用している関係上ビルドが必要です。
 
@@ -36,8 +36,13 @@ JavaScriptオンリーで作っているので、`app`以下のファイルを�
 * `npm run eslint` - アプリの静的解析ツール実行
 * `npm run clean` - 全ビルド生成物の削除
 
-## 起動方法
+## 実行方法
 `debugform/app/` にWeb上からアクセスしてください。デフォルトのVMでは http://172.16.10.12/ でアクセス可能です。
+
+### デモ
+http://honeplus.web.fc2.com/debugform/
+
+※ JavaScriptの制約上、スキーマを跨った通信 (HTTP→HTTPS or HTTPS→HTTP) はできません。HTTPSのAPIを叩くには、HTTPSの環境に設置する必要があります。
 
 ## 操作方法
 指定されたURLに入力データからリクエストを投げてレスポンスを表示するだけです。  
