@@ -1,6 +1,6 @@
 {
   "name": "debugform",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": true,
   "scripts": {
     "build": "npm run clean-app && browserify ./app/scripts/app.js -t babelify -t browserify-ngannotate | uglifyjs > ./app/bundle.js",

@@ -4,10 +4,8 @@ JavaScriptのWebアプリから、テンプレートを用いて、入力した�
 テンプレートには `{{ Math.floor(Math.random() * 1000) }}` のようにワンライナーのコード等を埋め込むことができます。
 
 ## 環境
-* AngularJS 1.5.7
-    * Bable 6.5.2
-    * browserify 13.1.0
-    * UI Bootstrap 1.3.3
+* AngularJS 1.5.x
+    * browserify 13.1.x + babelify 7.3.x
 
 ### 対応ブラウザ
 * &gt;= Google Chrome Ver51.0.2704.106
