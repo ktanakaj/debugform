@@ -51,6 +51,8 @@
           npm: name=browserify global=yes
         - name: Install "watchify" node.js package globally
           npm: name=watchify global=yes
+        - name: Install "uglify-js" node.js package globally
+          npm: name=uglify-js global=yes
       - block:
         - name: Action to disable service firewalld
           service: name=firewalld state=stopped enabled=no

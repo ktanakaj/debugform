@@ -3,7 +3,7 @@
   "version": "0.0.3",
   "private": true,
   "scripts": {
-    "build": "npm run clean-app && browserify ./app/scripts/app.js -t babelify -t browserify-ngannotate -o ./app/bundle.js",
+    "build": "npm run clean-app && browserify ./app/scripts/app.js -t babelify -t browserify-ngannotate | uglifyjs > ./app/bundle.js",
     "watch": "npm run clean-app && watchify --poll=true ./app/scripts/app.js -t babelify -t browserify-ngannotate -v -d -o ./app/bundle.js",
     "test": "NODE_ENV=test mocha --compilers js:babel-register --recursive ./test",
     "doc": "npm run clean-doc && jsdoc -r ./package.json ./app/scripts ./test",
@@ -24,6 +24,7 @@
     "jsdoc": "^3.4.0",
     "mocha": "^2.5.3",
     "power-assert": "^1.4.1",
+    "uglify-js": "^2.7.4",
     "watchify": "^3.7.0"
   },
   "babel": {
