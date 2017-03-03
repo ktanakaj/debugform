@@ -5,7 +5,7 @@ JavaScriptのWebアプリから、テンプレートを用いて、入力した�
 
 ## 環境
 * AngularJS 1.5.x
-    * browserify 13.1.x + babelify 7.3.x
+    * browserify 14.1.x + babelify 7.3.x
 
 ### 対応ブラウザ
 * &gt;= Google Chrome Ver51.0.2704.106
@@ -13,19 +13,15 @@ JavaScriptのWebアプリから、テンプレートを用いて、入力した�
 他は未検証。
 
 ### 開発環境
-* Vagrant 1.8.4 - 仮想環境管理
-    * VirtualBox 5.0.24 - 仮想環境
-    * vagrant-vbguest - Vagrantプラグイン
+* Node.js 6.x
 * Eclipse 4.7 (for JavaScript and Web Developers) - アプリ開発用IDE
 
 ## 設置方法
-JavaScriptオンリーで作っているので、`app`以下のファイルを適当な場所に設置すれば動作します。  
+JavaScriptオンリーで作っているので、`public` 以下のファイルを適当な場所に設置すれば動作します。  
 ただし、babelを使用している関係上ビルドが必要です。
 
-動作する仮想環境は、ソース一式の展開後に `vagrant up` で自動的に立ち上がります。
-
 ### ビルド方法
-ビルド等する場合は `debugapp` ディレクトリにて以下のコマンドを実行してください。
+ビルド等する場合は、プロジェクトのディレクトリにて `npm install` の後、以下のコマンドを実行してください。
 
 * `npm run build` - アプリのビルド
 * `npm run watch` - アプリのビルド（デバッグ用）
@@ -35,7 +31,7 @@ JavaScriptオンリーで作っているので、`app`以下のファイルを�
 * `npm run clean` - 全ビルド生成物の削除
 
 ## 実行方法
-`debugform/app/` にWeb上からアクセスしてください。デフォルトのVMでは http://172.16.10.12/ でアクセス可能です。
+`debugform/public/` にWeb上からアクセスしてください。
 
 ### デモ
 http://honeplus.web.fc2.com/debugform/

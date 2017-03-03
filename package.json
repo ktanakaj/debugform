@@ -3,14 +3,14 @@
   "version": "0.0.4",
   "private": true,
   "scripts": {
-    "build": "npm run clean-app && browserify ./app/scripts/app.js -t babelify -t browserify-ngannotate | uglifyjs > ./app/bundle.js",
-    "watch": "npm run clean-app && watchify --poll=true ./app/scripts/app.js -t babelify -t browserify-ngannotate -v -d -o ./app/bundle.js",
+    "build": "npm run clean-app && browserify ./public/app/app.js -t babelify -t browserify-ngannotate | uglifyjs > ./public/bundle.js",
+    "watch": "npm run clean-app && watchify --poll=true ./public/app/app.js -t babelify -t browserify-ngannotate -v -d -o ./public/bundle.js",
     "test": "NODE_ENV=test mocha --compilers js:babel-register --recursive ./test",
-    "doc": "npm run clean-doc && jsdoc -r ./package.json ./app/scripts ./test",
+    "doc": "npm run clean-doc && jsdoc -r ./package.json ./public/app ./test",
     "clean": "npm run clean-app & npm run clean-doc",
-    "clean-app": "rm -f ./app/bundle.js",
+    "clean-app": "rm -f ./public/bundle.js",
     "clean-doc": "rm -rf ./out",
-    "eslint": "eslint ./app/scripts ./test"
+    "eslint": "eslint ./public/app ./test"
   },
   "dependencies": {},
   "devDependencies": {
@@ -18,7 +18,7 @@
     "babel-preset-power-assert": "^1.0.0",
     "babel-register": "^6.14.0",
     "babelify": "^7.3.0",
-    "browserify": "^13.1.0",
+    "browserify": "^14.1.0",
     "browserify-ngannotate": "^2.0.0",
     "eslint": "^3.4.0",
     "jsdoc": "^3.4.0",

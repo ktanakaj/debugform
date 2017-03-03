@@ -4,7 +4,7 @@
  */
 const assert = require('power-assert');
 
-import debugformService from '../../app/scripts/services/debugform';
+import debugformService from '../../public/app/services/debugform';
 const service = debugformService(null);
 
 const config = {

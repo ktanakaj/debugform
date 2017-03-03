@@ -10,9 +10,9 @@
 playbook.retry
 coverage
 node_modules
-debugform/app/bundle.js
-debugform/tmp
-debugform/out
-debugform/obj
-debugform/bin
+public/bundle.*
+tmp
+out
+obj
+bin
 !.gitkeep
