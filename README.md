@@ -33,11 +33,6 @@ JavaScriptオンリーで作っているので、`public` 以下のファイル�
 ## 実行方法
 `debugform/public/` にWeb上からアクセスしてください。
 
-### デモ
-http://honeplus.web.fc2.com/debugform/
-
-※ JavaScriptの制約上、スキーマを跨った通信 (HTTP→HTTPS or HTTPS→HTTP) はできません。HTTPSのAPIを叩くには、HTTPSの環境に設置する必要があります。
-
 ## 操作方法
 指定されたURLに入力データからリクエストを投げてレスポンスを表示するだけです。  
 定義ファイルを作成すれば、リクエストのテンプレートを作成できます。
